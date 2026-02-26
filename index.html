@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroShift - Elimina hábitos y miedos sin fuerza de voluntad</title>
+    <meta name="description" content="Si la fuerza de voluntad no te funcionó para dejar de fumar, vencer la ansiedad o superar fobias, esto sí. Protocolo probado en 14 días.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Crimson+Pro:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5568d3;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --light: #f8f9ff;
+            --gray: #6b7280;
+            --gray-light: #9ca3af;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a1a3e 100%);
+            z-index: -2;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            animation: pulse 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(10deg); }
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 3rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.15);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .hero h1 .emphasis {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--gray);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            line-height: 1.5;
+        }
+        
+        .hero-proof {
+            font-size: 1.1rem;
+            color: var(--success);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.7s both;
+            font-weight: 600;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Space Mono', monospace;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Section styling */
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--gray);
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        /* Lead Magnet Section - FIRST */
+        .lead-magnet-first {
+            background: rgba(102, 126, 234, 0.05);
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 5rem 2rem;
+        }
+        
+        .lead-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .lead-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .lead-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .lead-box p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* Form styling */
+        .email-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .email-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            background: rgba(26, 26, 46, 0.8);
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Pro', serif;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .email-input::placeholder {
+            color: var(--gray);
+        }
+        
+        .form-success {
+            display: none;
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            color: var(--success);
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .form-success.show {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        /* Problem Section */
+        .problem {
+            background: rgba(26, 26, 46, 0.5);
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .problem-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .problem-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .problem-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        /* Featured Product */
+        .featured-product {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 3px solid var(--primary);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+        
+        .featured-product h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+            text-align: center;
+        }
+        
+        .featured-product > p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .product-features li {
+            padding: 0.75rem 0;
+            color: var(--light);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 1.05rem;
+        }
+        
+        .product-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .product-price {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .price-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+        
+        .price-period {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+        
+        .payment-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .payment-buttons .btn {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .payment-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+        
+        /* Coming Soon Section */
+        .coming-soon {
+            padding: 6rem 2rem;
+            background: rgba(26, 26, 46, 0.3);
+        }
+        
+        .coming-soon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .coming-soon-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 2px dashed rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .coming-soon-card:hover {
+            border-color: var(--primary);
+            border-style: solid;
+            transform: translateY(-5px);
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 1.5rem;
+        }
+        
+        .coming-soon-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .coming-soon-card p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Authority Section */
+        .authority {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .authority-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+        
+        .authority-box p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .authority-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-family: 'Space Mono', monospace;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-text {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 1rem auto;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-signature {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+        
+        .copyright {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .email-input {
+                min-width: 100%;
+            }
+            
+            .payment-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .featured-product {
+                padding: 2rem;
+            }
+            
+            .lead-box {
+                padding: 2rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+        }
+        
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">NEUROSHIFT</div>
+            <a href="#producto" class="nav-cta">Ver Producto</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Sin fuerza de voluntad · Sin terapia interminable</div>
+            <h1>Si la fuerza de voluntad <span class="emphasis">no te funcionó</span>, esto sí</h1>
+            <p class="hero-subtitle">
+                Protocolo de reprogramación neurológica en 14 días. 
+                Elimina ansiedad social, hábitos o fobias sin pelear contra tu cerebro.
+            </p>
+            <p class="hero-proof">✓ 3 sesiones de 10 minutos · Resultados en 2 semanas</p>
+            <div class="hero-cta">
+                <a href="#gratis" class="btn btn-primary">Probar Gratis</a>
+                <a href="#producto" class="btn btn-secondary">Ver Protocolo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Magnet FIRST -->
+    <section class="lead-magnet-first" id="gratis">
+        <div class="container">
+            <h2 class="section-title">Empieza gratis · Sin riesgo</h2>
+            <div class="lead-box">
+                <!-- SVG Icon: Gift/Download -->
+                <svg class="lead-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="60" y="80" width="80" height="80" rx="8" stroke="url(#grad1)" stroke-width="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M100 60 L100 100 M80 80 L120 80" stroke="url(#grad1)" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="100" cy="50" r="15" stroke="url(#grad2)" stroke-width="3" fill="rgba(240, 147, 251, 0.2)"/>
+                    <path d="M60 100 L140 100" stroke="url(#grad1)" stroke-width="3"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                
+                <h3>Swish Express (versión básica)</h3>
+                <p>
+                    PDF gratuito con la técnica Swish fundamental de Richard Bandler. 
+                    Aprende el mecanismo en 5 minutos y pruébalo tú mismo.
+                </p>
+                
+                <form class="email-form" id="leadFormMain">
+                    <input 
+                        type="email" 
+                        class="email-input" 
+                        placeholder="tu@email.com" 
+                        required
+                        id="emailInputMain"
+                    >
+                    <button type="submit" class="btn btn-primary">
+                        Descargar Gratis
+                    </button>
+                </form>
+                
+                <div class="form-success" id="formSuccessMain">
+                    ✓ ¡Perfecto! Revisa tu email en 2 minutos (mira spam si no aparece)
+                </div>
+                
+                <p class="form-note">
+                    📧 Recibirás 7 emails con casos prácticos reales de cómo funciona el Swish en diferentes situaciones
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">El problema real (que nadie te explica)</h2>
+            <p class="section-subtitle">
+                No es falta de motivación. No eres débil. Tu cerebro creó patrones automáticos 
+                y la fuerza de voluntad pelea CONTRA ellos. Por eso siempre pierdes.
+            </p>
+            
+            <div class="problem-grid">
+                <!-- Problem 1: Smoking -->
+                <div class="problem-card reveal">
+                    <!-- SVG Icon: Cigarette with X -->
+                    <svg class="problem-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="80" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.05)"/>
+                        <rect x="50" y="90" width="100" height="20" rx="10" fill="url(#grad1)" opacity="0.6"/>
+                        <circle cx="150" cy="100" r="15" fill="url(#grad2)"/>
+                        <path d="M70 70 L130 130 M130 70 L70 130" stroke="#f093fb" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    
+                    <h3>Fumar no es solo adicción química</h3>
+                    <p>
+                        Es un patrón neurológico asociado a momentos específicos: café, estrés, después de comer. 
+                        Tu cerebro lo ejecuta automáticamente. 0.3 segundos. Más rápido que tu consciencia.
+                    </p>
+                </div>
+                
+                <!-- Problem 2: Anxiety -->
+                <div class="problem-card reveal">
+                    <!-- SVG Icon: Person with speech bubble -->
+                    <svg class="problem-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="80" r="35" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.05)"/>
+                        <path d="M60 115 Q100 130 140 115" stroke="url(#grad1)" stroke-width="3" fill="none"/>
+                        <rect x="130" y="50" width="50" height="35" rx="8" stroke="url(#grad2)" stroke-width="2" fill="rgba(240, 147, 251, 0.1)"/>
+                        <path d="M150 85 L160 95 L150 95 Z" fill="url(#grad2)"/>
+                        <circle cx="85" cy="75" r="4" fill="#667eea"/>
+                        <circle cx="115" cy="75" r="4" fill="#667eea"/>
+                    </svg>
+                    
+                    <h3>Ansiedad social no es timidez</h3>
+                    <p>
+                        Tu cerebro aprendió a asociar "hablar en público" = "peligro mortal". 
+                        Aunque sepas que es irracional, la respuesta es automática. No puedes razonar con ella.
+                    </p>
+                </div>
+                
+                <!-- Problem 3: Phobias -->
+                <div class="problem-card reveal">
+                    <!-- SVG Icon: Plane/Height symbol -->
+                    <svg class="problem-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50 L150 100 L100 90 L100 140 L90 150 L90 90 L50 100 Z" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.1)"/>
+                        <circle cx="100" cy="100" r="70" stroke="url(#grad2)" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                        <path d="M60 160 Q100 140 140 160" stroke="#f093fb" stroke-width="3" stroke-dasharray="3,3"/>
+                    </svg>
+                    
+                    <h3>Fobias no responden a lógica</h3>
+                    <p>
+                        Sabes que el avión es seguro estadísticamente. Pero tu cerebro carga una imagen mental 
+                        intensa que dispara pánico real. Esa imagen puede cambiarse.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Product -->
+    <section class="products" id="producto">
+        <div class="container">
+            <h2 class="section-title">Protocolo disponible ahora</h2>
+            <p class="section-subtitle">
+                El único protocolo disponible actualmente. Los demás estarán listos próximamente 
+                (déjanos tu email y te avisaremos).
+            </p>
+            
+            <div class="featured-product reveal">
+                <span class="featured-badge">✓ DISPONIBLE AHORA</span>
+                
+                <!-- SVG Icon: Brain/Mind -->
+                <svg class="product-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 40 C70 40 50 60 50 90 C50 95 55 100 60 105 C55 110 50 120 50 130 C50 150 60 160 80 160 L120 160 C140 160 150 150 150 130 C150 120 145 110 140 105 C145 100 150 95 150 90 C150 60 130 40 100 40 Z" 
+                          stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.1)"/>
+                    <circle cx="80" cy="85" r="8" fill="url(#grad2)"/>
+                    <circle cx="120" cy="85" r="8" fill="url(#grad2)"/>
+                    <path d="M70 110 C75 120 85 125 100 125 C115 125 125 120 130 110" stroke="url(#grad1)" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M60 70 Q50 60 55 50" stroke="url(#grad2)" stroke-width="2"/>
+                    <path d="M140 70 Q150 60 145 50" stroke="url(#grad2)" stroke-width="2"/>
+                </svg>
+                
+                <h3>Swish para Ansiedad Social y Hablar en Público</h3>
+                <p>
+                    El protocolo más completo. Combina 3 técnicas: Swish adaptado + Anclaje de calma + Exposición gradual. 
+                    Perfecto si evitas presentaciones, reuniones o situaciones sociales por miedo al juicio.
+                </p>
+                
+                <ul class="product-features">
+                    <li>Protocolo de 3 pasos adaptado específicamente para ansiedad de performance</li>
+                    <li>Técnica de Anclaje para activar calma en el momento (herramienta de emergencia)</li>
+                    <li>Exposición gradual en 14 días (sin trauma, sin forzarte)</li>
+                    <li>Disociación rápida si el pánico intenta volver</li>
+                    <li>Casos específicos: presentaciones, entrevistas, videollamadas, eventos sociales</li>
+                    <li>8 páginas con ejercicios paso a paso, troubleshooting y scripts personalizables</li>
+                </ul>
+                
+                <div class="product-price">
+                    <span class="price-amount">€27</span>
+                    <span class="price-period">pago único · tuyo para siempre</span>
+                </div>
+                
+                <div class="payment-buttons">
+                    <a href="https://buy.stripe.com/PLACEHOLDER" class="btn btn-primary">
+                        Pagar con Stripe
+                    </a>
+                    <a href="https://paypal.me/PLACEHOLDER/27" class="btn btn-primary">
+                        Pagar con PayPal
+                    </a>
+                </div>
+                
+                <p class="payment-note">
+                    🔒 Pago 100% seguro · Entrega inmediata por email
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="coming-soon">
+        <div class="container">
+            <h2 class="section-title">Próximamente</h2>
+            <p class="section-subtitle">
+                Estos protocolos estarán disponibles en 2-3 semanas. 
+                Déjanos tu email y te avisaremos (+ descuento de lanzamiento exclusivo).
+            </p>
+            
+            <div class="coming-soon-grid">
+                <!-- Coming Soon 1: Smoking -->
+                <div class="coming-soon-card reveal">
+                    <span class="coming-soon-badge">⏳ EN DESARROLLO</span>
+                    
+                    <svg class="product-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="80" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.05)"/>
+                        <rect x="50" y="90" width="100" height="20" rx="10" fill="url(#grad1)" opacity="0.6"/>
+                        <circle cx="150" cy="100" r="15" fill="url(#grad2)"/>
+                        <path d="M70 70 L130 130 M130 70 L70 130" stroke="#f093fb" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    
+                    <h3>Swish para Dejar de Fumar</h3>
+                    <p>
+                        3 sesiones para eliminar disparadores automáticos. 
+                        Sin parches, sin chicles, sin fuerza de voluntad.
+                    </p>
+                    
+                    <form class="email-form" id="leadFormSmoking">
+                        <input 
+                            type="email" 
+                            class="email-input" 
+                            placeholder="tu@email.com" 
+                            required
+                        >
+                        <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                            Avísame
+                        </button>
+                    </form>
+                    
+                    <div class="form-success" id="formSuccessSmoking">
+                        ✓ Te avisaremos cuando esté listo
+                    </div>
+                </div>
+                
+                <!-- Coming Soon 2: Phobias -->
+                <div class="coming-soon-card reveal">
+                    <span class="coming-soon-badge">⏳ EN DESARROLLO</span>
+                    
+                    <svg class="product-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50 L150 100 L100 90 L100 140 L90 150 L90 90 L50 100 Z" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.1)"/>
+                        <circle cx="100" cy="100" r="70" stroke="url(#grad2)" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                        <path d="M60 160 Q100 140 140 160" stroke="#f093fb" stroke-width="3" stroke-dasharray="3,3"/>
+                    </svg>
+                    
+                    <h3>Swish para Fobias</h3>
+                    <p>
+                        Protocolo 3 pasos: Submodalidades + Swish + Exposición. 
+                        Para volar, alturas, arañas, espacios cerrados.
+                    </p>
+                    
+                    <form class="email-form" id="leadFormPhobias">
+                        <input 
+                            type="email" 
+                            class="email-input" 
+                            placeholder="tu@email.com" 
+                            required
+                        >
+                        <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                            Avísame
+                        </button>
+                    </form>
+                    
+                    <div class="form-success" id="formSuccessPhobias">
+                        ✓ Te avisaremos cuando esté listo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authority Section -->
+    <section class="authority">
+        <div class="container">
+            <div class="authority-box">
+                <p>
+                    Protocolos creados por <strong>practitioner certificado en PNL</strong> con años de aplicación práctica. 
+                    Basados en el trabajo de Richard Bandler (co-creador de PNL) pero adaptados para auto-aplicación.
+                </p>
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">
+                    <strong>Importante:</strong> El Swish funciona mejor con concentración enfocada. 
+                    Para casos complejos o si tienes dificultades de concentración, se recomienda trabajar con un acompañante certificado en PNL.
+                </p>
+                <div class="authority-badge">✓ Certificación oficial · Método probado</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">NEUROSHIFT</div>
+            <p class="footer-text">
+                Técnicas de PNL aplicables de forma autónoma. Basadas en el trabajo de Richard Bandler. 
+                Material educativo que no sustituye terapia profesional para casos severos.
+            </p>
+            
+            <div class="footer-links">
+                <a href="mailto:hola@neuro-shift.club">Contacto</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos de Uso</a>
+            </div>
+            
+            <p class="footer-signature">
+                — El equipo de NeuroShift
+            </p>
+            
+            <p class="copyright">
+                © 2026 NeuroShift. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        reveal();
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form handlers
+        function handleFormSubmit(formId, successId) {
+            const form = document.getElementById(formId);
+            const success = document.getElementById(successId);
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // TODO: Integrate with ConvertKit
+                    // Different form IDs for different lists:
+                    // - leadFormMain: Swish Express (general list)
+                    // - leadFormSmoking: Smoking waitlist
+                    // - leadFormPhobias: Phobias waitlist
+                    
+                    success.classList.add('show');
+                    form.style.display = 'none';
+                });
+            }
+        }
+        
+        // Initialize all forms
+        handleFormSubmit('leadFormMain', 'formSuccessMain');
+        handleFormSubmit('leadFormSmoking', 'formSuccessSmoking');
+        handleFormSubmit('leadFormPhobias', 'formSuccessPhobias');
+    </script>
+</body>
+</html>
