@@ -888,26 +888,19 @@
                 
                 <div class="payment-buttons">
                     <a href="https://buy.stripe.com/aFa00i3XFajhfb16tx6Zy00" class="btn btn-primary">
-                        💳 Pagar con Stripe
+                        Pagar con Stripe
                     </a>
                     <a href="https://paypal.me/PLACEHOLDER/27" class="btn btn-primary">
-                        💰 Pagar con PayPal
+                        Pagar con PayPal
                     </a>
                 </div>
                 
-                <!-- Payment trust badges -->
-                <div style="text-align: center; margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.05); border-radius: 12px;">
-                    <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 0.75rem;">
-                        🔒 Pago 100% seguro · Entrega inmediata por email
-                    </p>
-                    <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; opacity: 0.7;">
-                        <span style="font-size: 0.85rem; color: var(--gray-light);">Aceptamos:</span>
-                        <svg width="40" height="25" viewBox="0 0 40 25" fill="none"><rect width="40" height="25" rx="3" fill="#5469d4"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="10" font-weight="700">VISA</text></svg>
-                        <svg width="40" height="25" viewBox="0 0 40 25" fill="none"><rect width="40" height="25" rx="3" fill="#EB001B"/><circle cx="15" cy="12.5" r="7" fill="#FF5F00"/><circle cx="25" cy="12.5" r="7" fill="#F79E1B"/></svg>
-                        <svg width="50" height="20" viewBox="0 0 50 20" fill="none"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#667eea" font-size="9" font-weight="700">Stripe</text></svg>
-                        <svg width="50" height="20" viewBox="0 0 50 20" fill="none"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#0070ba" font-size="8" font-weight="700">PayPal</text></svg>
-                    </div>
-                </div>
+                <p class="payment-note">
+                    🔒 Pago 100% seguro · Entrega inmediata por email
+                </p>
+                <p style="text-align: center; margin-top: 0.5rem; font-size: 0.85rem; color: #9ca3af;">
+    Aceptamos: VISA · Mastercard · Stripe · PayPal
+</p>
             </div>
         </div>
     </section>
@@ -1000,10 +993,11 @@
                     Protocolos creados por <strong>practitioner certificado en PNL</strong> con años de aplicación práctica. 
                     Basados en el trabajo de Richard Bandler (co-creador de PNL) pero adaptados para auto-aplicación.
                 </p>
-                <p style="font-size: 0.95rem;">
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">
                     <strong>Importante:</strong> El Swish funciona mejor con concentración enfocada. 
                     Para casos complejos o si tienes dificultades de concentración, se recomienda trabajar con un acompañante certificado en PNL.
                 </p>
+                <div class="authority-badge">✓ Certificación oficial · Método probado</div>
             </div>
         </div>
     </section>
@@ -1018,7 +1012,7 @@
             </p>
             
             <div class="footer-links">
-                <a href="/cdn-cgi/l/email-protection#cca4a3a0ad8ca2a9b9bea3e1bfa4a5aab8e2afa0b9ae">Contacto</a>
+                <a href="mailto:hola@neuro-shift.club">Contacto</a>
                 <a href="#">Política de Privacidad</a>
                 <a href="#">Términos de Uso</a>
             </div>
@@ -1033,7 +1027,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Scroll reveal animation
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
@@ -1089,4 +1083,8 @@
         
         // Initialize all forms
         handleFormSubmit('leadFormMain', 'formSuccessMain');
-        hand
+        handleFormSubmit('leadFormSmoking', 'formSuccessSmoking');
+        handleFormSubmit('leadFormPhobias', 'formSuccessPhobias');
+    </script>
+</body>
+</html>
