@@ -697,6 +697,84 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Estilos personalizados para formularios Kit */
+.formkit-form[data-uid="ff6021371a"] .formkit-input,
+.formkit-form[data-uid="21b65030fd"] .formkit-input {
+    background: transparent !important;
+    border: 2px solid rgba(102, 126, 234, 0.3) !important;
+    color: #f8f9ff !important;
+    font-size: 1rem !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    font-family: 'Crimson Pro', serif !important;
+}
+
+.formkit-form[data-uid="ff6021371a"] .formkit-input::placeholder,
+.formkit-form[data-uid="21b65030fd"] .formkit-input::placeholder {
+    color: rgba(248, 249, 255, 0.5) !important;
+}
+
+.formkit-form[data-uid="ff6021371a"] .formkit-input:focus,
+.formkit-form[data-uid="21b65030fd"] .formkit-input:focus {
+    border-color: var(--primary) !important;
+    outline: none !important;
+}
+
+.formkit-form[data-uid="ff6021371a"] .formkit-submit,
+.formkit-form[data-uid="21b65030fd"] .formkit-submit {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    color: white !important;
+    border: none !important;
+    padding: 1rem 2rem !important;
+    border-radius: 8px !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Space Mono', monospace !important;
+}
+
+.formkit-form[data-uid="ff6021371a"] .formkit-submit:hover,
+.formkit-form[data-uid="21b65030fd"] .formkit-submit:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Ocultar "Built with Kit" */
+.formkit-powered-by-convertkit-container {
+    display: none !important;
+}
+
+/* Ajustar campos en línea */
+.formkit-form .formkit-fields {
+    gap: 1rem !important;
+}
+
+.formkit-form[data-uid="ff6021371a"] .formkit-field {
+    flex: 1 !important;
+}
+
+.formkit-form[data-uid="ff6021371a"] .formkit-submit {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+/* Mensajes de éxito/error */
+.formkit-alert-success {
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-color: #10b981 !important;
+    color: #10b981 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+}
+
+.formkit-alert-error {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: #ef4444 !important;
+    color: #ef4444 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+}
     </style>
 </head>
 <body>
