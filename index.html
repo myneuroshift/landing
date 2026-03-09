@@ -699,14 +699,33 @@
         }
         /* Estilos personalizados para formularios Kit */
 .formkit-form[data-uid="ff6021371a"] .formkit-input,
-.formkit-form[data-uid="21b65030fd"] .formkit-input {
-    background: transparent !important;
+.formkit-form[data-uid="21b65030fd"] .formkit-input,
+.formkit-form .formkit-input[name="email_address"],
+input[name="email_address"][type="email"] {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
     border: 2px solid rgba(102, 126, 234, 0.3) !important;
-    color: #f8f9ff !important;
+    color: #1a1a2e !important;
     font-size: 1rem !important;
     padding: 1rem !important;
     border-radius: 8px !important;
     font-family: 'Crimson Pro', serif !important;
+}
+
+/* Forzar fondo blanco en focus también */
+.formkit-form[data-uid="ff6021371a"] .formkit-input:focus,
+.formkit-form[data-uid="21b65030fd"] .formkit-input:focus,
+.formkit-form .formkit-input[name="email_address"]:focus {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+/* Forzar fondo blanco en focus también */
+.formkit-form[data-uid="ff6021371a"] .formkit-input:focus,
+.formkit-form[data-uid="21b65030fd"] .formkit-input:focus,
+.formkit-form .formkit-input[name="email_address"]:focus {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
 }
 
 .formkit-form[data-uid="ff6021371a"] .formkit-input::placeholder,
@@ -716,6 +735,8 @@
 
 .formkit-form[data-uid="ff6021371a"] .formkit-input:focus,
 .formkit-form[data-uid="21b65030fd"] .formkit-input:focus {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
     border-color: var(--primary) !important;
     outline: none !important;
 }
