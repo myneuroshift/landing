@@ -775,6 +775,55 @@
     border-radius: 8px !important;
     padding: 1rem !important;
 }
+      /* Ocultar alertas vacías de Kit */
+.formkit-alert:empty,
+.formkit-alert-error:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Asegurar que los campos de formulario no tengan márgenes extraños */
+.formkit-form .formkit-fields {
+    align-items: center !important;
+}
+
+/* Eliminar cualquier div vacío que Kit pueda generar */
+.formkit-form div:empty {
+    display: none !important;
+}
+```
+
+4. **Guarda** (Commit changes)
+
+---
+
+## **QUEDARÁ ASÍ:**
+```
+776        padding: 1rem !important;
+777    }
+778
+779    /* Ocultar alertas vacías de Kit */
+780    .formkit-alert:empty,
+781    .formkit-alert-error:empty {
+782        display: none !important;
+783        height: 0 !important;
+784        margin: 0 !important;
+785        padding: 0 !important;
+786    }
+787
+788    /* Asegurar que los campos de formulario no tengan márgenes extraños */
+789    .formkit-form .formkit-fields {
+790        align-items: center !important;
+791    }
+792
+793    /* Eliminar cualquier div vacío que Kit pueda generar */
+794    .formkit-form div:empty {
+795        display: none !important;
+796    }
+797    </style>
+798    </head>  
     </style>
 </head>
 <body>
