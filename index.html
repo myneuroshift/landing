@@ -775,24 +775,77 @@
     border-radius: 8px !important;
     padding: 1rem !important;
 }
-      /* Ocultar alertas vacías de Kit */
-.formkit-alert:empty,
-.formkit-alert-error:empty {
+      /* OCULTAR ELEMENTOS DE KIT QUE NO QUEREMOS */
+.formkit-alert,
+.formkit-alert-error,
+.formkit-alert-success,
+ul[data-element="errors"],
+ul[data-group="alert"] {
     display: none !important;
+    visibility: hidden !important;
     height: 0 !important;
+    width: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
+    border: none !important;
+    opacity: 0 !important;
 }
 
-/* Asegurar que los campos de formulario no tengan márgenes extraños */
+/* Mostrar SOLO cuando tengan contenido real */
+.formkit-alert:not(:empty),
+.formkit-alert-error:not(:empty),
+.formkit-alert-success:not(:empty) {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    width: auto !important;
+    opacity: 1 !important;
+}
+
+/* Asegurar que los campos de formulario estén bien alineados */
 .formkit-form .formkit-fields {
     align-items: center !important;
+    gap: 1rem !important;
 }
 
-/* Eliminar cualquier div vacío que Kit pueda generar */
-.formkit-form div:empty {
+/* OPCIÓN NUCLEAR - Forzar ocultación del elemento de errores de Kit */
+.formkit-form > div > ul {
     display: none !important;
 }
+
+.formkit-form [data-element="errors"] {
+    display: none !important;
+}
+
+.formkit-form [data-group="alert"] {
+    display: none !important;
+}
+
+/* Forzar que solo se muestre cuando haya un error REAL */
+.formkit-alert-error:not(:empty) {
+    display: block !important;
+    background: rgba(239, 68, 68, 0.1) !important;
+    border: 1px solid #ef4444 !important;
+    color: #ef4444 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+}
+```
+
+---
+
+## **RESULTADO FINAL:**
+```
+776        padding: 1rem !important;
+777    }
+778    /* OCULTAR ELEMENTOS DE KIT QUE NO QUEREMOS */
+779    .formkit-alert,
+...
+(todo el código nuevo)
+...
+829    </style>
+830    </head>
 ```
 
 4. **Guarda** (Commit changes)
