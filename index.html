@@ -17,13 +17,17 @@
             --dark: #1a1a2e;
             --darker: #0f0f1e;
             --light: #f8f9ff;
-            --gray: #a1a1aa;
+            --gray: #6b7280;
             --gray-light: #9ca3af;
             --success: #10b981;
             --warning: #f59e0b;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
             font-family: 'Crimson Pro', serif;
@@ -36,20 +40,45 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a1a3e 100%);
             z-index: -2;
         }
         
-        h1, h2, h3 { font-family: 'Space Mono', monospace; font-weight: 700; }
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            animation: pulse 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(10deg); }
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
         
         nav {
             position: fixed;
-            top: 0; width: 100%;
+            top: 0;
+            width: 100%;
             background: rgba(15, 15, 30, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             border-bottom: 1px solid rgba(102, 126, 234, 0.2);
         }
         
@@ -63,191 +92,672 @@
         
         .logo {
             font-family: 'Space Mono', monospace;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        /* --- HERO OPTIMIZADO --- */
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 7rem 1.5rem 4rem;
-            text-align: center;
+            padding: 8rem 2rem 3rem;
+            position: relative;
         }
         
-        .hero-content { max-width: 800px; width: 100%; }
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         
         .hero-badge {
             display: inline-block;
             background: rgba(102, 126, 234, 0.15);
             border: 1px solid var(--primary);
             color: var(--primary);
-            padding: 0.4rem 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 50px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
         
         .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            color: var(--light);
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
         
         .hero h1 .emphasis {
             background: linear-gradient(135deg, var(--accent), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             color: var(--gray);
             margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            line-height: 1.5;
+        }
+        
+        .hero-proof {
+            font-size: 1.1rem;
+            color: var(--success);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.7s both;
+            font-weight: 600;
+        }
+        
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.8s both;
         }
 
+        /* --- NUEVOS ESTILOS DEL HERO AÑADIDOS AQUÍ --- */
         .hero-bullets {
             list-style: none;
-            margin: 2rem auto;
+            padding: 0;
+            margin: 0 auto 2.5rem;
             max-width: 550px;
             text-align: left;
-            display: inline-block;
         }
 
         .hero-bullets li {
             margin-bottom: 0.8rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
+            gap: 10px;
+            animation: fadeInUp 1s ease-out 0.7s both;
         }
 
-        .hero-bullets li span:first-child { color: var(--success); font-weight: bold; }
-
-        .hero-cta { margin-top: 2rem; }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        .btn-large {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
             width: 100%;
             max-width: 450px;
-            font-size: 1.1rem;
+            text-align: center;
         }
-
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4); }
 
         .cta-microcopy {
             display: block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
             color: var(--gray-light);
+            animation: fadeInUp 1s ease-out 0.8s both;
         }
 
         .hero-trial-box {
             margin-top: 3.5rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(102, 126, 234, 0.2);
+            animation: fadeInUp 1s ease-out 0.9s both;
         }
 
-        .hero-trial-box p { font-size: 0.95rem; color: var(--gray-light); margin-bottom: 0.5rem; }
+        .hero-trial-box p {
+            font-size: 1rem;
+            color: var(--gray-light);
+            margin-bottom: 0.5rem;
+        }
 
         .link-secondary {
             color: var(--primary);
             text-decoration: underline;
             font-weight: 600;
-            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
         }
 
-        /* --- SECCIONES COMUNES --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-        section { padding: 5rem 0; }
-        .section-title { font-size: 2.2rem; text-align: center; margin-bottom: 3rem; }
-
+        .link-secondary:hover {
+            color: var(--accent);
+        }
+        /* ------------------------------------------- */
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Space Mono', monospace;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--light);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--gray);
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .lead-magnet-first {
+            background: rgba(102, 126, 234, 0.05);
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 5rem 2rem;
+        }
+        
         .lead-box {
+            max-width: 700px;
+            margin: 0 auto;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
             border: 2px solid var(--primary);
             border-radius: 20px;
-            padding: 3rem 1.5rem;
+            padding: 3rem;
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
         }
-
+        
+        .lead-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .lead-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .lead-box p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .problem {
+            background: rgba(26, 26, 46, 0.5);
+        }
+        
         .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
         }
-
+        
         .problem-card {
             background: rgba(26, 26, 46, 0.8);
             border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
         }
-
+        
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .problem-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .problem-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
         .featured-product {
+            max-width: 800px;
+            margin: 0 auto;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
             border: 3px solid var(--primary);
             border-radius: 24px;
-            padding: 3rem 2rem;
+            padding: 3rem;
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
         }
-
+        
         .featured-badge {
             position: absolute;
-            top: -15px; left: 50%; transform: translateX(-50%);
-            background: var(--success); color: white;
-            padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+        
+        .featured-product h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+            text-align: center;
+        }
+        
+        .featured-product > p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .product-features li {
+            padding: 0.75rem 0;
+            color: var(--light);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 1.05rem;
+        }
+        
+        .product-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .product-price {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .price-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+        
+        .price-period {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+        
+        .payment-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .payment-buttons .btn {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .payment-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+        }
+        
+        .coming-soon {
+            padding: 6rem 2rem;
+            background: rgba(26, 26, 46, 0.3);
+        }
+        
+        .coming-soon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .coming-soon-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 2px dashed rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .coming-soon-card:hover {
+            border-color: var(--primary);
+            border-style: solid;
+            transform: translateY(-5px);
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 1.5rem;
+        }
+        
+        .coming-soon-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .coming-soon-card p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .authority {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .authority-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+        
+        .authority-box p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .authority-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-family: 'Space Mono', monospace;
+        }
+        
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-text {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 1rem auto;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-signature {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+        
+        .copyright {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            margin-top: 1rem;
         }
 
-        .price-amount { font-size: 3.5rem; color: var(--accent); display: block; font-family: 'Space Mono'; }
+        /* Kit.com form styles */
+        .formkit-form .formkit-input {
+            background: #ffffff !important;
+            border: 2px solid rgba(102, 126, 234, 0.3) !important;
+            color: #000000 !important;
+            font-size: 1rem !important;
+            padding: 1rem !important;
+            border-radius: 8px !important;
+            font-family: 'Crimson Pro', serif !important;
+        }
 
-        .payment-buttons { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-        .payment-buttons .btn { flex: 1; min-width: 200px; }
+        .formkit-form .formkit-input:focus {
+            background: #ffffff !important;
+            border-color: var(--primary) !important;
+            outline: none !important;
+        }
 
-        footer { padding: 4rem 1.5rem; text-align: center; border-top: 1px solid rgba(102, 126, 234, 0.2); color: var(--gray); }
+        .formkit-form .formkit-input::placeholder {
+            color: rgba(0, 0, 0, 0.4) !important;
+        }
 
-        /* Formkit Custom */
-        .formkit-fields { display: flex; gap: 10px; justify-content: center; margin-top: 1.5rem; }
-        .formkit-input { padding: 0.8rem; border-radius: 8px; border: none; width: 100%; max-width: 300px; }
-        .formkit-submit { padding: 0.8rem 1.5rem; border-radius: 8px; background: var(--primary); color: white; border: none; cursor: pointer; font-family: 'Space Mono'; }
+        .formkit-form .formkit-submit {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            color: white !important;
+            border: none !important;
+            padding: 1rem 1.5rem !important;
+            border-radius: 8px !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            font-family: 'Space Mono', monospace !important;
+            white-space: nowrap !important;
+        }
 
+        .formkit-form .formkit-submit:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3) !important;
+        }
+
+        .formkit-powered-by-convertkit-container {
+            display: none !important;
+        }
+
+        .formkit-alert:empty,
+        .formkit-alert-error:empty {
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .formkit-form .formkit-fields {
+            gap: 1rem !important;
+            align-items: center !important;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-bullets { text-align: left; }
-            .formkit-fields { flex-direction: column; align-items: center; }
-            .formkit-input { max-width: 100%; }
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .payment-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .featured-product {
+                padding: 2rem;
+            }
+            
+            .lead-box {
+                padding: 2rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+
+            .formkit-form .formkit-fields {
+                flex-direction: column !important;
+            }
+
+            .formkit-form .formkit-submit {
+                width: 100% !important;
+            }
+
+            .hero-bullets {
+                padding-left: 1rem;
+            }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-
     <nav>
         <div class="nav-content">
             <div class="logo">NEURO-SHIFT</div>
-            <a href="#producto" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem; width: auto;">Ver Producto</a>
+            <a href="#producto" class="nav-cta">Ver Producto</a>
         </div>
     </nav>
 
@@ -263,91 +773,324 @@
             </p>
 
             <ul class="hero-bullets">
-                <li><span>✓</span> <span><strong>Sin lucha interna:</strong> Reprogramación subconsciente directa.</span></li>
-                <li><span>✓</span> <span><strong>Mecanismo Swish:</strong> La técnica de PNL más potente para fobias.</span></li>
-                <li><span>✓</span> <span><strong>Resultados reales:</strong> Siente el cambio en tu próxima interacción.</span></li>
+                <li><span style="color: var(--success); font-weight: bold;">✓</span> <span><strong>Sin lucha interna:</strong> Reprogramación subconsciente directa.</span></li>
+                <li><span style="color: var(--success); font-weight: bold;">✓</span> <span><strong>Mecanismo Swish:</strong> La técnica de PNL más potente para fobias sociales.</span></li>
+                <li><span style="color: var(--success); font-weight: bold;">✓</span> <span><strong>Resultados reales:</strong> Siente el cambio en tu próxima interacción social.</span></li>
             </ul>
 
             <div class="hero-cta">
-                <a href="#producto" class="btn btn-primary">OBTENER EL PROTOCOLO DE 14 DÍAS</a>
+                <a href="#producto" class="btn btn-primary btn-large">OBTENER EL PROTOCOLO DE 14 DÍAS</a>
                 <span class="cta-microcopy">Empieza hoy por solo 27€ (Acceso de por vida)</span>
             </div>
             
             <div class="hero-trial-box">
-                <p>¿Eres escéptico? Prueba una dosis rápida</p>
+                <p>¿Quieres una prueba rápida?</p>
                 <a href="#gratis" class="link-secondary">Descarga gratis: "El Interruptor Swish" (PDF de 5 minutos)</a>
             </div>
         </div>
     </section>
 
-    <section id="gratis">
+    <section class="lead-magnet-first" id="gratis">
         <div class="container">
             <h2 class="section-title">Empieza gratis · Sin riesgo</h2>
             <div class="lead-box">
+                <svg class="lead-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="60" y="80" width="80" height="80" rx="8" stroke="url(#grad1)" stroke-width="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M100 60 L100 100 M80 80 L120 80" stroke="url(#grad1)" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="100" cy="50" r="15" stroke="url(#grad2)" stroke-width="3" fill="rgba(240, 147, 251, 0.2)"/>
+                    <path d="M60 100 L140 100" stroke="url(#grad1)" stroke-width="3"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                
                 <h3>Swish Express (versión básica)</h3>
-                <p>PDF gratuito con la técnica Swish fundamental. Aprende el mecanismo en 5 minutos y pruébalo tú mismo.</p>
+                <p>
+                    PDF gratuito con la técnica Swish fundamental de Richard Bandler. 
+                    Aprende el mechanism en 5 minutos y pruébalo tú mismo.
+                </p>
 
-                <form action="https://app.kit.com/forms/9169770/subscriptions" method="post" class="formkit-form">
-                    <div class="formkit-fields">
-                        <input class="formkit-input" name="email_address" placeholder="tu@email.com" required type="email">
-                        <button type="submit" class="formkit-submit">Descargar GRATIS</button>
+                <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+                <form action="https://app.kit.com/forms/9169770/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9169770" data-uid="ff6021371a" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;✓ ¡Perfecto! Revisa tu email en 2 minutos (mira spam si no aparece)&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800">
+                    <div data-style="clean">
+                        <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+                        <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+                            <div class="formkit-field">
+                                <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="tu@email.com" required="" type="email" style="color: rgb(0, 0, 0); border-color: rgb(227, 227, 227); border-radius: 4px; font-weight: 400;">
+                            </div>
+                            <button data-element="submit" class="formkit-submit formkit-submit" style="color: rgb(255, 255, 255); background-color: rgb(22, 119, 190); border-radius: 4px; font-weight: 400;">
+                                <div class="formkit-spinner"><div></div><div></div><div></div></div>
+                                <span>Descargar GRATIS</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
-                <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--gray-light);">📧 Recibirás el PDF de inmediato en tu email.</p>
+                
+                <p class="form-note">
+                    📧 Más contenido exclusivo próximamente en tu email con casos prácticos reales de cómo funciona el Swish en diferentes situaciones
+                </p>
             </div>
         </div>
     </section>
 
     <section class="problem">
         <div class="container">
-            <h2 class="section-title">El problema real</h2>
+            <h2 class="section-title">El problema real (que nadie te explica)</h2>
+            <p class="section-subtitle">
+                No es falta de motivación. No eres débil. Tu cerebro creó patrones automáticos 
+                y la fuerza de voluntad pelea CONTRA ellos. Por eso siempre pierdes.
+            </p>
+            
             <div class="problem-grid">
-                <div class="problem-card">
+                <div class="problem-card reveal">
+                    <svg class="problem-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="80" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.05)"/>
+                        <rect x="50" y="90" width="100" height="20" rx="10" fill="url(#grad1)" opacity="0.6"/>
+                        <circle cx="150" cy="100" r="15" fill="url(#grad2)"/>
+                        <path d="M70 70 L130 130 M130 70 L70 130" stroke="#f093fb" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    <h3>Fumar no es solo adicción química</h3>
+                    <p>
+                        Es un patrón neurológico asociado a momentos específicos: café, estrés, después de comer. 
+                        Tu cerebro lo ejecuta automáticamente. 0.3 segundos. Más rápido que tu consciencia.
+                    </p>
+                </div>
+                
+                <div class="problem-card reveal">
+                    <svg class="problem-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="80" r="35" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.05)"/>
+                        <path d="M60 115 Q100 130 140 115" stroke="url(#grad1)" stroke-width="3" fill="none"/>
+                        <rect x="130" y="50" width="50" height="35" rx="8" stroke="url(#grad2)" stroke-width="2" fill="rgba(240, 147, 251, 0.1)"/>
+                        <path d="M150 85 L160 95 L150 95 Z" fill="url(#grad2)"/>
+                        <circle cx="85" cy="75" r="4" fill="#667eea"/>
+                        <circle cx="115" cy="75" r="4" fill="#667eea"/>
+                    </svg>
                     <h3>Ansiedad social no es timidez</h3>
-                    <p>Tu cerebro asoció "socializar" con "peligro". Es un patrón automático de 0.3 segundos. No puedes razonar con él, tienes que reprogramarlo.</p>
+                    <p>
+                        Tu cerebro aprendió a asociar "hablar en público" = "peligro mortal". 
+                        Aunque sepas que es irracional, la respuesta es automática. No puedes razonar con ella.
+                    </p>
                 </div>
-                <div class="problem-card">
-                    <h3>Fobias y lógica</h3>
-                    <p>Sabes que el avión es seguro, pero tu mente carga una imagen de pánico. El Swish cambia esa imagen interna de forma permanente.</p>
-                </div>
-                <div class="problem-card">
-                    <h3>Hábitos automáticos</h3>
-                    <p>Fumar o comer por ansiedad son "programas" que tu subconsciente ejecuta para protegerte del estrés. Vamos a cambiar el programa.</p>
+                
+                <div class="problem-card reveal">
+                    <svg class="problem-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50 L150 100 L100 90 L100 140 L90 150 L90 90 L50 100 Z" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.1)"/>
+                        <circle cx="100" cy="100" r="70" stroke="url(#grad2)" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                        <path d="M60 160 Q100 140 140 160" stroke="#f093fb" stroke-width="3" stroke-dasharray="3,3"/>
+                    </svg>
+                    <h3>Fobias no responden a lógica</h3>
+                    <p>
+                        Sabes que el avión es seguro estadísticamente. Pero tu cerebro carga una imagen mental 
+                        intensa que dispara pánico real. Esa imagen puede cambiarse.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="producto">
+    <section class="products" id="producto">
         <div class="container">
-            <div class="featured-product">
+            <h2 class="section-title">Protocolo disponible ahora</h2>
+            <p class="section-subtitle">
+                El único protocolo disponible actualmente. Los demás estarán listos próximamente 
+                (déjanos tu email y te avisaremos).
+            </p>
+            
+            <div class="featured-product reveal">
                 <span class="featured-badge">✓ DISPONIBLE AHORA</span>
-                <h3>Swish para Ansiedad Social</h3>
-                <p>El protocolo completo de 14 días para transformar tu respuesta ante reuniones, eventos y hablar en público.</p>
                 
-                <div style="text-align: left; margin: 2rem 0; color: var(--light);">
-                    <p>✓ Protocolo de 3 pasos adaptado específicamente.</p>
-                    <p>✓ Técnica de Anclaje para calma instantánea.</p>
-                    <p>✓ Guía de auto-aplicación en 10 minutos al día.</p>
+                <svg class="product-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 40 C70 40 50 60 50 90 C50 95 55 100 60 105 C55 110 50 120 50 130 C50 150 60 160 80 160 L120 160 C140 160 150 150 150 130 C150 120 145 110 140 105 C145 100 150 95 150 90 C150 60 130 40 100 40 Z" 
+                          stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.1)"/>
+                    <circle cx="80" cy="85" r="8" fill="url(#grad2)"/>
+                    <circle cx="120" cy="85" r="8" fill="url(#grad2)"/>
+                    <path d="M70 110 C75 120 85 125 100 125 C115 125 125 120 130 110" stroke="url(#grad1)" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M60 70 Q50 60 55 50" stroke="url(#grad2)" stroke-width="2"/>
+                    <path d="M140 70 Q150 60 145 50" stroke="url(#grad2)" stroke-width="2"/>
+                </svg>
+                
+                <h3>Swish para Ansiedad Social y Hablar en Público</h3>
+                <p>
+                    El protocolo más completo. Combina 3 técnicas: Swish adaptado + Anclaje de calma + Exposición gradual. 
+                    Perfecto si evitas presentaciones, reuniones o situaciones sociales por miedo al juicio.
+                </p>
+                
+                <ul class="product-features">
+                    <li>Protocolo de 3 pasos adaptado específicamente para ansiedad de performance</li>
+                    <li>Técnica de Anclaje para activar calma en el momento (herramienta de emergencia)</li>
+                    <li>Exposición gradual en 14 días (sin trauma, sin forzarte)</li>
+                    <li>Disociación rápida si el pánico intenta volver</li>
+                    <li>Casos específicos: presentaciones, entrevistas, videollamadas, eventos sociales</li>
+                    <li>8 páginas con ejercicios paso a paso, troubleshooting y scripts personalizables</li>
+                </ul>
+                
+                <div class="product-price">
+                    <span class="price-amount">€27</span>
+                    <span class="price-period">pago único · tuyo para siempre</span>
                 </div>
-
-                <div class="price-amount">27€</div>
-                <p style="color: var(--gray-light);">Pago único · Acceso de por vida</p>
-
+                
                 <div class="payment-buttons">
-                    <a href="https://buy.stripe.com/aFa00i3XFajhfb16tx6Zy00" class="btn btn-primary">Pagar con Tarjeta</a>
-                    <a href="https://www.paypal.com/ncp/payment/35J5EMBSMPWHC" class="btn btn-primary" style="background: var(--secondary);">PayPal</a>
+                    <a href="https://buy.stripe.com/aFa00i3XFajhfb16tx6Zy00" class="btn btn-primary">
+                        Pagar con Tarjeta
+                    </a>
+                    <a href="https://www.paypal.com/ncp/payment/35J5EMBSMPWHC" class="btn btn-primary">
+                        Pagar con PayPal
+                    </a>
                 </div>
+                
+                <p class="payment-note">
+                    🔒 Pago 100% seguro · Entrega inmediata por email
+                </p>
+                <p style="text-align: center; margin-top: 0.5rem; font-size: 1rem; color: #d1d5db;">
+                    Aceptamos: VISA · Mastercard · Stripe · PayPal
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="coming-soon">
+        <div class="container">
+            <h2 class="section-title">Próximamente</h2>
+            <p class="section-subtitle">
+                Estos protocolos estarán disponibles en 2-3 semanas. 
+                Déjanos tu email y te avisaremos (+ descuento de lanzamiento exclusivo).
+            </p>
+            
+            <div class="coming-soon-grid">
+                <div class="coming-soon-card reveal">
+                    <span class="coming-soon-badge">⏳ EN DESARROLLO</span>
+                    
+                    <svg class="product-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="80" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.05)"/>
+                        <rect x="50" y="90" width="100" height="20" rx="10" fill="url(#grad1)" opacity="0.6"/>
+                        <circle cx="150" cy="100" r="15" fill="url(#grad2)"/>
+                        <path d="M70 70 L130 130 M130 70 L70 130" stroke="#f093fb" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    
+                    <h3>Swish para Dejar de Fumar</h3>
+                    <p>
+                        3 sesiones para eliminar disparadores automáticos. 
+                        Sin parches, sin chicles, sin fuerza de voluntad.
+                    </p>
+                    
+                    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+                    <form action="https://app.kit.com/forms/9183335/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9183335" data-uid="21b65030fd" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;✓ Te avisaremos cuando esté listo&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800">
+                        <div data-style="clean">
+                            <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+                            <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+                                <div class="formkit-field">
+                                    <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="tu@email.com" required="" type="email" style="color: rgb(0, 0, 0); border-color: rgb(227, 227, 227); border-radius: 4px; font-weight: 400;">
+                                </div>
+                                <button data-element="submit" class="formkit-submit formkit-submit" style="color: rgb(255, 255, 255); background-color: rgb(22, 119, 190); border-radius: 4px; font-weight: 400;">
+                                    <div class="formkit-spinner"><div></div><div></div><div></div></div>
+                                    <span>Avísame</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="coming-soon-card reveal">
+                    <span class="coming-soon-badge">⏳ EN DESARROLLO</span>
+                    
+                    <svg class="product-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50 L150 100 L100 90 L100 140 L90 150 L90 90 L50 100 Z" stroke="url(#grad1)" stroke-width="3" fill="rgba(102, 126, 234, 0.1)"/>
+                        <circle cx="100" cy="100" r="70" stroke="url(#grad2)" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                        <path d="M60 160 Q100 140 140 160" stroke="#f093fb" stroke-width="3" stroke-dasharray="3,3"/>
+                    </svg>
+                    
+                    <h3>Swish para Fobias</h3>
+                    <p>
+                        Protocolo 3 pasos: Submodalidades + Swish + Exposición. 
+                        Para volar, alturas, arañas, espacios cerrados.
+                    </p>
+                    
+                    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+                    <form action="https://app.kit.com/forms/9183335/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9183335" data-uid="21b65030fd" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;✓ Te avisaremos cuando esté listo&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800">
+                        <div data-style="clean">
+                            <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+                            <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+                                <div class="formkit-field">
+                                    <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="tu@email.com" required="" type="email" style="color: rgb(0, 0, 0); border-color: rgb(227, 227, 227); border-radius: 4px; font-weight: 400;">
+                                </div>
+                                <button data-element="submit" class="formkit-submit formkit-submit" style="color: rgb(255, 255, 255); background-color: rgb(22, 119, 190); border-radius: 4px; font-weight: 400;">
+                                    <div class="formkit-spinner"><div></div><div></div><div></div></div>
+                                    <span>Avísame</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="authority">
+        <div class="container">
+            <div class="authority-box">
+                <p>
+                    Protocolos creados por <strong>practitioner certificado en PNL</strong> con años de aplicación práctica. 
+                    Basados en el trabajo de Richard Bandler (co-creador de PNL) pero adaptados para auto-aplicación.
+                </p>
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">
+                    <strong>Importante:</strong> El Swish funciona mejor con concentración enfocada. 
+                    Para casos complejos o si tienes dificultades de concentración, se recomienda trabajar con un acompañante certificado en PNL.
+                </p>
+                <div class="authority-badge">✓ Certificación oficial · Método probado</div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="logo">NEURO-SHIFT</div>
-            <p>© 2026 Neuro-Shift. Basado en PNL aplicada. soporte@neuro-shift.club</p>
+            <div class="footer-logo">NEURO-SHIFT</div>
+            <p class="footer-text">
+                Técnicas de PNL aplicables de forma autónoma. Basadas en el trabajo de Richard Bandler. 
+                Material educativo que no sustituye terapia profesional para casos severos.
+            </p>
+            
+            <div class="footer-links">
+                <a href="mailto:soporte@neuro-shift.club">soporte@neuro-shift.club</a>
+                <a href="privacidad.html">Política de Privacidad</a>
+                <a href="terminos.html">Términos de Uso</a>
+            </div>
+            
+            <p class="footer-signature">— El equipo de Neuro-Shift</p>
+            <p class="copyright">© 2026 Neuro-Shift. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <script>
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', reveal);
+        reveal();
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
