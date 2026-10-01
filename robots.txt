@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /pdfs/
+Disallow: /gracias.html
+Disallow: /index_new.html
+
+Sitemap: https://neuro-shift.club/sitemap.xml

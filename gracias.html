@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gracias por tu compra | NeuroShift</title>
+<meta name="description" content="Tu compra se ha completado.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Gracias por tu compra | NeuroShift">
+<meta property="og:description" content="Tu compra se ha completado.">
+<meta property="og:type" content="website">
+<link rel="preload" href="/fonts/fraunces-latin-300-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Fraunces';src:url('/fonts/fraunces-latin-300-900-normal.woff2') format('woff2');font-weight:300 900;font-style:normal;font-display:swap;}
+@font-face{font-family:'Space Mono';src:url('/fonts/space-mono-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:'Space Mono';src:url('/fonts/space-mono-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;}
+@font-face{font-family:'DM Sans';src:url('/fonts/dm-sans-latin-400-700-normal.woff2') format('woff2');font-weight:400 700;font-display:swap;}
+</style>
+<link rel="stylesheet" href="/assets/site.css?v=2">
+
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="logo"><a href="/"><span class="dot"></span>NEUROSHIFT</a></div>
+    <nav class="links">
+      <a href="/#productos">Técnicas</a>
+      <a href="/#gratis">Swish gratis</a>
+      <a href="/#pack">Pack</a>
+      <a href="/#manual">Manual PNL</a>
+    </nav>
+    <a href="/#productos" class="nav-cta">Ver técnicas</a>
+  </div>
+</header>
+
+<main class="page">
+  <div class="prose">
+    <p class="kicker">Compra completada</p>
+    <h1>Gracias. Tu PDF ya va <em>de camino</em>.</h1>
+    <p class="lede">En unos minutos recibirás un email con tu descarga en la dirección que usaste al pagar.</p>
+    <ul>
+      <li>Si no lo ves, revisa <strong>spam</strong> o <strong>promociones</strong>.</li>
+      <li>Si pasados 15 minutos no ha llegado, escríbenos a <a href="mailto:soporte@neuro-shift.club">soporte@neuro-shift.club</a> y te lo enviamos a mano.</li>
+    </ul>
+    <div class="callout">Un consejo: no lo dejes para «cuando tenga tiempo». Busca hoy 15 minutos tranquilos y haz el primer ejercicio. Es lo que más diferencia marca.</div>
+    <p><a href="/">← Volver a NeuroShift</a></p>
+  </div>
+</main>
+<script>
+(function(){
+  var V = {"publico": [27, "Swish Hablar en público"], "fumar": [27, "Swish Dejar de fumar"], "volar": [27, "Swish Miedo a volar"], "atracones": [27, "Swish Atracones"], "anclaje": [27, "Anclaje mental"], "fobias": [27, "Técnica rápida de fobias"], "pack": [57, "Pack 3 técnicas"], "manual": [97, "Manual completo PNL"]};
+  var p = new URLSearchParams(location.search).get('p');
+  var item = V[p] || null;
+  window.addEventListener('DOMContentLoaded', function(){
+    var data = item ? {value: item[0], currency: 'EUR', content_name: item[1]} : {currency: 'EUR'};
+    try { if (!sessionStorage.getItem('ns_purchase_' + (p||'x'))) { NS.track('Purchase', data); sessionStorage.setItem('ns_purchase_' + (p||'x'), '1'); } }
+    catch(e) { NS.track('Purchase', data); }
+  });
+})();
+</script>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Neuro<span>Shift</span></div>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:hola@neuro-shift.club">hola@neuro-shift.club</a>
+        <a href="mailto:soporte@neuro-shift.club">soporte@neuro-shift.club</a>
+      </div>
+      <div class="footer-col">
+        <h4>Técnicas</h4>
+        <a href="/hablar-en-publico.html">Hablar en público</a>
+        <a href="/miedo-a-volar.html">Miedo a volar</a>
+        <a href="/anclaje.html">Anclaje mental</a>
+        <a href="/#manual">Manual completo</a>
+      </div>
+      <div class="footer-col">
+        <h4>Síguenos</h4>
+        <a href="https://www.tiktok.com/@neuroshift04" target="_blank" rel="noopener">TikTok @neuroshift04</a>
+      </div>
+    </div>
+    <p class="disclaimer">Los materiales de NeuroShift son contenidos educativos y de desarrollo personal basados en técnicas de PNL. No son terapia, no constituyen consejo médico ni psicológico y no sustituyen el diagnóstico o tratamiento de un profesional sanitario. Los resultados varían de una persona a otra. Si tu malestar es intenso o persistente, consulta con un profesional.</p>
+    <div class="footer-legal">
+      <a href="/aviso-legal.html">Aviso legal</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="/terminos.html">Condiciones de venta</a>
+      <button type="button" onclick="NS.openSettings()">Configurar cookies</button>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NeuroShift · neuro-shift.club</span>
+      <span>Pagos procesados por Stripe y PayPal</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/consent.js?v=2"></script>
+</body>
+</html>
